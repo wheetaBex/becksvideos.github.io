@@ -110,7 +110,6 @@ function setup() {
         // Deletes that spot so it's no longer an option
         options.splice(index, 1);
         grid[i][j].bee = true;
-        
     }
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
