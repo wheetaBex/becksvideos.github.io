@@ -1,147 +1,404 @@
-function Cell(i, j, w) {
-    this.i = i;
-    this.j = j;
-    this.x = i * w;
-    this.y = j * w;
-    this.w = w;
-    this.neighborCount = 0;
-    this.bee = false;
-    this.revealed = false;
-}
-Cell.prototype.show = function() {
-    stroke(0);
-    noFill();
-    rect(this.x, this.y, this.w, this.w);
-    if (this.revealed) {
-        if (this.bee) {
-            fill(127);
-            ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
-        } else {
-            fill(200);
-            rect(this.x, this.y, this.w, this.w);
-            if (this.neighborCount > 0) {
-                textAlign(CENTER);
-                fill(0);
-                text(this.neighborCount, this.x + this.w * 0.5, this.y + this.w - 6);
-            }
-        }
-    }
-}
-Cell.prototype.countBees = function() {
-    if (this.bee) {
-        this.neighborCount = -1;
-        return;
-    }
-    var total = 0;
-    for (var xoff = -1; xoff <= 1; xoff++) {
-        var i = this.i + xoff;
-        if (i < 0 || i >= cols) continue;
-        for (var yoff = -1; yoff <= 1; yoff++) {
-            var j = this.j + yoff;
-            if (j < 0 || j >= rows) continue;
-            var neighbor = grid[i][j];
-            if (neighbor.bee) {
-                total++;
-            }
-        }
-    }
-    this.neighborCount = total;
-}
-Cell.prototype.contains = function(x, y) {
-    return (x > this.x && x < this.x + this.w && y > this.y && y < this.y + this.w);
-}
-Cell.prototype.reveal = function() {
-    this.revealed = true;
-    if (this.neighborCount == 0) {
-        // flood fill time
-        this.floodFill();
-    }
-}
-Cell.prototype.floodFill = function() {
-    for (var xoff = -1; xoff <= 1; xoff++) {
-        var i = this.i + xoff;
-        if (i < 0 || i >= cols) continue;
-        for (var yoff = -1; yoff <= 1; yoff++) {
-            var j = this.j + yoff;
-            if (j < 0 || j >= rows) continue;
-            var neighbor = grid[i][j];
-            // Note the neighbor.bee check was not required.
-            // See issue #184
-            if (!neighbor.revealed) {
-                neighbor.reveal();
-            }
-        }
-    }
-}
-function make2DArray(cols, rows) {
-    var arr = new Array(cols);
-    for (var i = 0; i < arr.length; i++) {
-        arr[i] = new Array(rows);
-    }
-    return arr;
-}
-var grid;
-var cols;
-var rows;
-var w = 20;
-var totalBees = 30;
-function setup() {
-    createCanvas(401, 401);
-    cols = floor(width / w);
-    rows = floor(height / w);
-    grid = make2DArray(cols, rows);
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            grid[i][j] = new Cell(i, j, w);
-        }
-    }
-    // Pick totalBees spots
-    var options = [];
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            options.push([i, j]);
-        }
-    }
-    for (var n = 0; n < totalBees; n++) {
-        var index = floor(random(options.length));
-        var choice = options[index];
-        var i = choice[0];
-        var j = choice[1];
-        // Deletes that spot so it's no longer an option
-        options.splice(index, 1);
-        grid[i][j].bee = true;
-    }
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            grid[i][j].countBees();
-        }
-    }
-}
-function gameOver() {
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            grid[i][j].revealed = true;
-        }
-    }
-}
-function mousePressed() {
 
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            if (grid[i][j].contains(mouseX, mouseY)) {
-                grid[i][j].reveal();
-                if (grid[i][j].bee) {
-                    gameOver();
-                }
-            }
-        }
-    }
+function Bird() {
+
+
+
+
+ this.y = height/2;
+
+
+ this.x = 64;
+
+
+
+
+
+
+
+ this.gravity = 0.7;
+
+
+ this.lift = -12;
+
+
+ this.velocity = 0;
+
+
+
+
+
+
+
+ this.show = function() {
+
+
+   fill(255);
+
+
+   ellipse(this.x, this.y, 32, 32);
+
+
+ }
+
+
+
+
+
+
+
+ this.up = function() {
+
+
+   this.velocity += this.lift;
+
+
+ }
+
+
+
+
+
+
+
+ this.update = function() {
+
+
+   this.velocity += this.gravity;
+
+
+   // this.velocity *= 0.9;
+
+
+   this.y += this.velocity;
+
+
+
+
+
+
+
+   if (this.y > height) {
+
+
+     this.y = height;
+
+
+     this.velocity = 0;
+
+
+   }
+
+
+
+
+
+
+
+   if (this.y < 0) {
+
+
+     this.y = 0;
+
+
+     this.velocity = 0;
+
+
+   }
+
+
+
+
+
+
+
+ }
+
+
+
+
+
+
+
 }
+
+function Pipe() {
+
+
+
+
+ this.spacing = 175;
+
+
+ this.top = random(height / 6, 3 / 4 * height);
+
+
+ this.bottom = height - (this.top + this.spacing);
+
+
+ this.x = width;
+
+
+ this.w = 80;
+
+
+ this.speed = 6;
+
+
+
+
+
+
+
+ this.highlight = false;
+
+
+
+
+
+
+
+ this.hits = function(bird) {
+
+
+   if (bird.y < this.top || bird.y > height - this.bottom) {
+
+
+     if (bird.x > this.x && bird.x < this.x + this.w) {
+
+
+       this.highlight = true;
+
+
+       return true;
+
+
+     }
+
+
+   }
+
+
+   this.highlight = false;
+
+
+   return false;
+
+
+ }
+
+
+
+
+
+
+
+ this.show = function() {
+
+
+   fill(255);
+
+
+   if (this.highlight) {
+
+
+     fill(255, 0, 0);
+
+
+   }
+
+
+   rect(this.x, 0, this.w, this.top);
+
+
+   rect(this.x, height-this.bottom, this.w, this.bottom);
+
+
+ }
+
+
+
+
+
+
+
+ this.update = function() {
+
+
+   this.x -= this.speed;
+
+
+ }
+
+
+
+
+
+
+
+ this.offscreen = function() {
+
+
+   if (this.x < -this.w) {
+
+
+     return true;
+
+
+   } else {
+
+
+     return false;
+
+
+   }
+
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+var bird;
+
+
+
+
+var pipes = [];
+
+
+
+
+
+
+
+function setup() {
+
+
+ createCanvas(640, 480);
+
+
+ bird = new Bird();
+
+
+ pipes.push(new Pipe());
+
+
+}
+
+
+
+
+
+
+
 function draw() {
-    background(255);
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            grid[i][j].show();
-        }
-    }
+
+
+ background(0);
+
+
+
+
+
+
+
+ for (var i = pipes.length-1; i >= 0; i--) {
+
+
+   pipes[i].show();
+
+
+   pipes[i].update();
+
+
+
+
+
+
+
+   if (pipes[i].hits(bird)) {
+
+
+     console.log("HIT");
+
+
+   }
+
+
+
+
+
+
+
+   if (pipes[i].offscreen()) {
+
+
+     pipes.splice(i, 1);
+
+
+   }
+
+
+ }
+
+
+
+
+
+
+
+ bird.update();
+
+
+ bird.show();
+
+
+
+
+
+
+
+ if (frameCount % 75 == 0) {
+
+
+   pipes.push(new Pipe());
+
+
+ }
+
+
 }
+
+
+
+
+
+
+
+function keyPressed() {
+
+
+ if (key == ' ') {
+
+
+   bird.up();
+
+
+   //console.log("SPACE");
+
+
+ }
+
+
+}
+
