@@ -1,404 +1,3093 @@
-
-function Bird() {
-
-
-
-
- this.y = height/2;
-
-
- this.x = 64;
-
-
-
-
-
-
-
- this.gravity = 0.7;
-
-
- this.lift = -12;
-
-
- this.velocity = 0;
-
-
-
-
-
-
-
- this.show = function() {
-
-
-   fill(255);
-
-
-   ellipse(this.x, this.y, 32, 32);
-
-
- }
-
-
-
-
-
-
-
- this.up = function() {
-
-
-   this.velocity += this.lift;
-
-
- }
-
-
-
-
-
-
-
- this.update = function() {
-
-
-   this.velocity += this.gravity;
-
-
-   // this.velocity *= 0.9;
-
-
-   this.y += this.velocity;
-
-
-
-
-
-
-
-   if (this.y > height) {
-
-
-     this.y = height;
-
-
-     this.velocity = 0;
-
-
-   }
-
-
-
-
-
-
-
-   if (this.y < 0) {
-
-
-     this.y = 0;
-
-
-     this.velocity = 0;
-
-
-   }
-
-
-
-
-
-
-
- }
-
-
-
-
-
-
-
-}
-
-function Pipe() {
-
-
-
-
- this.spacing = 175;
-
-
- this.top = random(height / 6, 3 / 4 * height);
-
-
- this.bottom = height - (this.top + this.spacing);
-
-
- this.x = width;
-
-
- this.w = 80;
-
-
- this.speed = 6;
-
-
-
-
-
-
-
- this.highlight = false;
-
-
-
-
-
-
-
- this.hits = function(bird) {
-
-
-   if (bird.y < this.top || bird.y > height - this.bottom) {
-
-
-     if (bird.x > this.x && bird.x < this.x + this.w) {
-
-
-       this.highlight = true;
-
-
-       return true;
-
-
-     }
-
-
-   }
-
-
-   this.highlight = false;
-
-
-   return false;
-
-
- }
-
-
-
-
-
-
-
- this.show = function() {
-
-
-   fill(255);
-
-
-   if (this.highlight) {
-
-
-     fill(255, 0, 0);
-
-
-   }
-
-
-   rect(this.x, 0, this.w, this.top);
-
-
-   rect(this.x, height-this.bottom, this.w, this.bottom);
-
-
- }
-
-
-
-
-
-
-
- this.update = function() {
-
-
-   this.x -= this.speed;
-
-
- }
-
-
-
-
-
-
-
- this.offscreen = function() {
-
-
-   if (this.x < -this.w) {
-
-
-     return true;
-
-
-   } else {
-
-
-     return false;
-
-
-   }
-
-
- }
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-var bird;
-
-
-
-
-var pipes = [];
-
-
-
-
-
-
+var x = 1201
+var p = 0.000001
 
 function setup() {
-
-
- createCanvas(640, 480);
-
-
- bird = new Bird();
-
-
- pipes.push(new Pipe());
-
-
+  createCanvas(700, 600, WEBGL);
+  
 }
-
-
-
-
-
-
 
 function draw() {
+  orbitControl()
 
+  background(0);
+  noFill()
+  stroke(0)
+  strokeWeight(1)
+  //rotateX(frameCount * 0.1)
+  fill("white")
+  sphere(100)
+  strokeWeight(01)
+  //noStroke()
+  fill(0)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
- background(0);
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
- for (var i = pipes.length-1; i >= 0; i--) {
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
-   pipes[i].show();
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
-   pipes[i].update();
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
-   if (pipes[i].hits(bird)) {
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
-     console.log("HIT");
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
-   }
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
-   if (pipes[i].offscreen()) {
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
-     pipes.splice(i, 1);
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
-   }
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
- }
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
- bird.update();
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
- bird.show();
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
- if (frameCount % 75 == 0) {
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
-   pipes.push(new Pipe());
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
 
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
 
- }
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
 
+  box(x,x,x)
 
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+  
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+  
+  
+  
+  
+  fill("blue")
+  
+  
+  
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+  
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  box(x,x,x)
+
+  
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+  rotateZ(frameCount * p)
+
+  box(x,x,x)
+
+  rotateZ(frameCount * p)
+  rotateX(frameCount * p)
+  rotateY(frameCount * p)
+
+  box(x,x,x)
+  
 }
-
-
-
-
-
-
-
-function keyPressed() {
-
-
- if (key == ' ') {
-
-
-   bird.up();
-
-
-   //console.log("SPACE");
-
-
- }
-
-
-}
-
