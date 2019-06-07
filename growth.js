@@ -16,7 +16,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(0);
   //each frame we show the cells that are alive
   showAliveCells()
   //then we determine which ones should be alive next turn and update our array
