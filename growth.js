@@ -1,4 +1,4 @@
-var gridSize = 130
+var gridSize = 260
 var arraySize = (gridSize*gridSize)
 var chanceOfLife = 0.07
 //the "isAlive" array stores true/false for each of our cells telling us which ones are alive: 
