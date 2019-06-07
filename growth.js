@@ -1,4 +1,4 @@
-var gridSize = 260
+var gridSize = 130
 var arraySize = (gridSize*gridSize)
 var chanceOfLife = 0.07
 //the "isAlive" array stores true/false for each of our cells telling us which ones are alive: 
@@ -6,7 +6,7 @@ var isAlive = []
 var nextTurnIsAlive = []
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(500, 500);
   //to start, we randomly assign each cell as living or dead (boolean true or false) 
   for(var i = 0;i<arraySize;i++){
   	var alive = (Math.random() < chanceOfLife)
