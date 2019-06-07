@@ -1,4 +1,4 @@
-var gridSize = 130
+var gridSize = 260
 var arraySize = (gridSize*gridSize)
 var chanceOfLife = 0.08
 
